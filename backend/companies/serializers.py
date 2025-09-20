@@ -33,12 +33,15 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    company_name = serializers.CharField(source='company.name', read_only=True)
+    company_name = serializers.SerializerMethodField()
 
     class Meta:
         model = User
         fields = ['id', 'username', 'email', 'first_name', 'last_name', 'company', 'company_name', 'is_company_admin', 'created_at']
         read_only_fields = ['id', 'created_at']
+    
+    def get_company_name(self, obj):
+        return obj.company.name if obj.company else None
 
 
 class LoginSerializer(serializers.Serializer):
