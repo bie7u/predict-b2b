@@ -34,8 +34,8 @@ class UserRegistrationView(generics.CreateAPIView):
         if not self.request.user.is_company_admin and not self.request.user.is_superuser:
             raise permissions.PermissionDenied("Only company admins can create new users.")
         
-        # Ensure the new user belongs to the same company as the admin
-        if not self.request.user.is_superuser:
+        # Ensure the new user belongs to the same company as the admin (unless it's a superuser)
+        if not self.request.user.is_superuser and self.request.user.company:
             serializer.validated_data['company'] = self.request.user.company
         
         serializer.save()
@@ -49,7 +49,10 @@ class UserListView(generics.ListAPIView):
     def get_queryset(self):
         if self.request.user.is_superuser:
             return User.objects.all()
-        return User.objects.filter(company=self.request.user.company)
+        # Regular users can only see users from their own company
+        if self.request.user.company:
+            return User.objects.filter(company=self.request.user.company)
+        return User.objects.none()
 
 
 class LoginView(APIView):

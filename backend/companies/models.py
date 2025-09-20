@@ -19,9 +19,11 @@ class Company(models.Model):
 
 class User(AbstractUser):
     """Extended user model for company employees"""
-    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='employees')
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='employees', null=True, blank=True)
     is_company_admin = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.username} - {self.company.name}"
+        if self.company:
+            return f"{self.username} - {self.company.name}"
+        return f"{self.username} - (System Admin)" if self.is_superuser else self.username
