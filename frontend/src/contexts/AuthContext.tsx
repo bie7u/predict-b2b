@@ -82,7 +82,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       if (token && userStr) {
         try {
-          const user = JSON.parse(userStr);
           // Verify token is still valid by fetching profile
           const response = await authAPI.getProfile();
           dispatch({ type: 'LOGIN_SUCCESS', payload: response.data });

@@ -6,6 +6,7 @@ import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import Matches from './components/Matches';
 import Rankings from './components/Rankings';
+import Admin from './components/Admin';
 
 function App() {
   return (
@@ -35,6 +36,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <Rankings />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin"
+              element={
+                <ProtectedRoute>
+                  <Admin />
                 </ProtectedRoute>
               }
             />

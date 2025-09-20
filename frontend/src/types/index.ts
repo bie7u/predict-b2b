@@ -7,6 +7,7 @@ export interface User {
   company: number;
   company_name: string;
   is_company_admin: boolean;
+  is_superuser?: boolean;
   created_at: string;
 }
 

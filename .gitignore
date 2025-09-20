@@ -1,0 +1,55 @@
+# Django
+*.pyc
+__pycache__/
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+*.sqlite3
+.env
+.venv
+*.log
+
+# React
+node_modules/
+build/
+dist/
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Temporary files
+.tmp/
+tmp/
+*.tmp
+
+# Media files (company logos)
+backend/media/
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+
+# pytest
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
